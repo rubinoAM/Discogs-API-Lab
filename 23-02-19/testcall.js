@@ -8,8 +8,21 @@ var dis = new discogs({
     consumerSecret: config.conSec,
 });
 
-console.log(dis);
+//console.log(dis);
 /*db.getRelease(13933,(err,results)=>{
     if(err){throw err}
     console.log(results);
 })*/
+
+db.getRelease(13933)
+    .then((release)=>{
+        return db.getArtist(release.artists[0].id);
+    })
+    .then((artist)=>{
+        console.log(artist.name);
+    })
+
+db.getArtist(28085,(err,results)=>{
+    if(err){throw err}
+    console.log(results);
+})
